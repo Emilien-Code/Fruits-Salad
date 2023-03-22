@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'Country.dart';
 
 class Fruit {
 
-  Fruit({required this.id,required this.name, required this.price, required this.color, required this.image, required this.quantity, required this.origin, required this.season});
+  Fruit({required this.id,required this.name, required this.price, required this.color, required this.image, required this.quantity, required this.season, required this.country});
   final int id;
   final String name;
   final double price;
   final Color color;
   final String image;
   final int quantity;
-  final int origin;
   final String season;
+  final Country country;
 
   factory Fruit.fromJson(Map<String, dynamic> json) {
     return Fruit(
@@ -22,9 +23,8 @@ class Fruit {
       color: Color(int.parse(json['color'].substring(1, 7), radix: 16) + 0xFF000000),
       image: json['image'],
       quantity: int.parse(json['stock'].toString()),
-      origin: int.parse(json['origin'].toString()),
       season: json['season'],
-
+      country: Country.fromJson(json['origin'])
     );
   }
 
@@ -36,7 +36,6 @@ class Fruit {
         'color': color,
         'image': image,
         'quantity': quantity,
-        'origin': origin,
         'season': season,
       };
 

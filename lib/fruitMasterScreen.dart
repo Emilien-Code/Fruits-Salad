@@ -26,7 +26,7 @@ class _FruitMasterState extends State<FruitMasterScreen> {
   late List<Fruit> fruits;
 
   Future<List<Fruit>> fetchApi () async {
-    final response = await http.get(Uri.parse('https://fruits.shrp.dev/items/fruits'));
+    final response = await http.get(Uri.parse('https://fruits.shrp.dev/items/fruits?fields=*.*'));
     List<Fruit> fruits = [];
 
 
@@ -106,6 +106,7 @@ class _FruitMasterState extends State<FruitMasterScreen> {
                             );
                           }
                           else if (snapshot.hasError) {
+                            print(snapshot.error);
                             return const Center(
                               child: Text('Erreur de chargement des fruits'),
                             );
