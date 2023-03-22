@@ -42,7 +42,7 @@ class FruitDetailView extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Image(image: AssetImage('./images/${fruit.image}'),
+                              Image(image: AssetImage('./ressources/${fruit.image}'),
                                 width: 100,
                                 height: 100,
                               ),

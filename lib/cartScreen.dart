@@ -72,7 +72,7 @@ class CartPreview extends StatelessWidget {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:[
-                Image(image: AssetImage('./images/${fruit.image}'),
+                Image(image: AssetImage('./ressources/${fruit.image}'),
                   width: 50,
                   height: 50,
                 ),

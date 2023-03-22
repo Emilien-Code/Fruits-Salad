@@ -281,7 +281,7 @@ class FruitPreview extends StatelessWidget {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:[
-                Image(image: AssetImage('./images/${fruit.image}'),
+                Image(image: AssetImage('./ressources/${fruit.image}'),
                   width: 50,
                   height: 50,
                 ),
@@ -362,7 +362,7 @@ class FruitDetailView extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Image(image: AssetImage('./images/${fruit.image}'),
+                              Image(image: AssetImage('./ressources/${fruit.image}'),
                                 width: 100,
                                 height: 100,
                               ),
@@ -519,7 +519,7 @@ class CartPreview extends StatelessWidget {
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children:[
-                Image(image: AssetImage('./images/${fruit.image}'),
+                Image(image: AssetImage('./ressources/${fruit.image}'),
                   width: 50,
                   height: 50,
                 ),
