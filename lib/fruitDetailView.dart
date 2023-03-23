@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'Fruit.dart';
+import 'QuantityBadge.dart';
 import 'cartProvider.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -84,9 +85,10 @@ class FruitDetailView extends StatelessWidget {
                                     fontFamily: 'Roboto',
                                   ),
                                 ),
-                                //Consumer(builder: (context, CartProvider cartProvider, child) =>
-                                //   QuantityBadge(quantity: cartProvider.nbFruitPanierMemo(fruit))
-                                //),
+                                
+                                Consumer(builder: (context, CartProvider cartProvider, child) =>
+                                  QuantityBadge(qty: cartProvider.nbFruitPanierMemo(fruit))
+                                ),
                               ],
                             ),
                           ),

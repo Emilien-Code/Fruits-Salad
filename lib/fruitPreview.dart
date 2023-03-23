@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'QuantityBadge.dart';
 
 import 'Fruit.dart';
 import 'cartProvider.dart';
@@ -26,9 +27,7 @@ class FruitPreview extends StatelessWidget {
                   height: 50,
                 ),
                 Text(fruit.name),
-                Consumer(builder: (context, CartProvider cartProvider, child) =>
-                    Text(cartProvider.nbFruitPanierMemo(fruit)),
-                ),
+
                 Text(
                     '${fruit.price} €',
                     style: const TextStyle(
@@ -42,6 +41,9 @@ class FruitPreview extends StatelessWidget {
             trailing:Row(
               mainAxisSize: MainAxisSize.min,
               children:[
+                Consumer(builder: (context, CartProvider cartProvider, child) =>
+                  QuantityBadge(qty: cartProvider.nbFruitPanierMemo(fruit))
+                ),
                 IconButton(onPressed: ()=>{
                   Navigator.push(
                     context,

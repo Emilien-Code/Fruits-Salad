@@ -36,9 +36,9 @@ class CartProvider extends ChangeNotifier{
   String nbFruitPanierMemo(Fruit fruit){
     var nbFruit=_panier.where((element) => element.id == fruit.id).length;
     if(nbFruit==0){
-      return '';
+      return '0';
     }
-    return 'x$nbFruit';
+    return '$nbFruit';
   }
 
 }
