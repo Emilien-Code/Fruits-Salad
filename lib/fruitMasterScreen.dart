@@ -4,15 +4,17 @@ import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 import 'dart:convert';
 
+import 'Sort.dart';
 import 'Fruit.dart';
 import 'cartProvider.dart';
 import 'cartScreen.dart';
 import 'fruitPreview.dart';
 
 class FruitMasterScreen extends StatefulWidget {
-  const FruitMasterScreen({super.key, required this.title});
+  const FruitMasterScreen({super.key, required this.title, required this.fruits});
 
   final String title;
+  final List<Fruit> fruits;
 
   @override
   State<FruitMasterScreen> createState() => _FruitMasterState();
@@ -23,29 +25,18 @@ class FruitMasterScreen extends StatefulWidget {
 
 class _FruitMasterState extends State<FruitMasterScreen> {
 
-  late List<Fruit> fruits;
 
-  Future<List<Fruit>> fetchApi () async {
-    final response = await http.get(Uri.parse('https://fruits.shrp.dev/items/fruits?fields=*.*'));
-    List<Fruit> fruits = [];
+  late  List<Fruit> fruits;
 
+  @override
+  void initState(){
 
-    if(response.statusCode == 200 || response.statusCode == 304){
-      final fruitList = jsonDecode(response.body);
-      var ft = fruitList['data'].map<Fruit>((fruit) => Fruit.fromJson(fruit));
-
-      fruits = ft.toList();
-
-    }
-    else{
-      throw Exception('Erreur de chargement API');
-    }
-
-    return fruits;
+    super.initState();
+    fruits = widget.fruits;
+      print(fruits);
 
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -92,32 +83,16 @@ class _FruitMasterState extends State<FruitMasterScreen> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Sort(),
                   const SizedBox(height: 20),
                   Expanded(
-                    child: FutureBuilder(
-                        future: fetchApi(),
-                        builder: (context, snapshot) {
-                          if (snapshot.hasData) {
-                            return ListView.builder(
-                              itemCount: snapshot.data?.length,
+                    child: ListView.builder(
+                              itemCount: fruits.length,
                               itemBuilder: (context, index) {
-                                return FruitPreview(fruit: snapshot.data![index]);
+                                 return FruitPreview(fruit: fruits[index]);
+                                // return Text("$index");
                               },
-                            );
-                          }
-                          else if (snapshot.hasError) {
-                            print(snapshot.error);
-                            return const Center(
-                              child: Text('Erreur de chargement des fruits'),
-                            );
-                          }
-                          else {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                        }
-                    ),
+                            )
                   ),
                 ]
             )
